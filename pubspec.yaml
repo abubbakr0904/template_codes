@@ -64,14 +64,20 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/sql/
 
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
+  fonts:
+     - family: Poppins
+       fonts:
+         - asset: assets/fonts/Poppins/Poppins-Black.ttf
+         - asset: assets/fonts/Poppins/Poppins-Bold.ttf
+         - asset: assets/fonts/Poppins/Poppins-ExtraBold.ttf
+         - asset: assets/fonts/Poppins/Poppins-ExtraLight.ttf
+         - asset: assets/fonts/Poppins/Poppins-Light.ttf
+         - asset: assets/fonts/Poppins/Poppins-Medium.ttf
+         - asset: assets/fonts/Poppins/Poppins-Regular.ttf
+         - asset: assets/fonts/Poppins/Poppins-Thin.ttf
 
