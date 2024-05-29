@@ -17,6 +17,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   TextEditingController textEditingController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,37 +50,31 @@ class _HomeScreenState extends State<HomeScreen> {
           if (state.formsStatus == FormsStatus.success) {
             return Column(
               children: [
-                TextField(
-                  controller: textEditingController,
-                  style: const TextStyle(
-                    fontFamily: AppImages.fontPoppins,
-                    color : Colors.white
-                  ),
-                  onChanged: (v){
-                    context.read<RegionBloc>().add(
-                      SearchRegionCallEvent(searchTitle: v)
-                    );
-                    setState(() {
-
-                    });
-                  },
-
-
-                  //assaapind indiw ofne
-                  decoration: InputDecoration(
-                    hintText: "Search",
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        width: 1.sp,
-                        color : Colors.white
-                      ),
-                    ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            width: 1.sp,
-                            color : Colors.white
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: TextField(
+                    controller: textEditingController,
+                    style: const TextStyle(
+                        fontFamily: AppImages.fontPoppins, color: Colors.white),
+                    onChanged: (v) {
+                      context
+                          .read<RegionBloc>()
+                          .add(SearchRegionCallEvent(searchTitle: v));
+                      setState(() {});
+                    },
+                    decoration: InputDecoration(
+                        hintText: "Search...",
+                        hintStyle: const TextStyle(
+                            fontFamily: AppImages.fontPoppins,
+                            color: Colors.white),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(width: 1.sp, color: Colors.white),
                         ),
-                      )
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(width: 1.sp, color: Colors.white),
+                        )),
                   ),
                 ),
                 Expanded(
@@ -90,13 +85,30 @@ class _HomeScreenState extends State<HomeScreen> {
                         (index) => ListTile(
                           leading: Image.asset(AppImages.location,
                               width: 40.w, height: 40.w, fit: BoxFit.cover),
-                          title: Text(
-                            state.currentRegions[index].name,
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: AppImages.fontPoppins,
-                                fontSize: 20.sp,
-                                fontWeight: FontWeight.w500),
+                          title: RichText(
+                            text: TextSpan(
+                              style: DefaultTextStyle.of(context).style,
+                              children: <TextSpan>[
+                                TextSpan(
+                                    text: state.currentRegions[index].name.substring(0 , textEditingController.text.length),
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontFamily: AppImages.fontPoppins,
+                                        fontSize: 20.sp,
+                                        fontWeight: FontWeight.w800)),
+                                TextSpan(
+                                    text: state.currentRegions[index].name
+                                        .substring(
+                                            textEditingController.text.length,
+                                            state.currentRegions[index].name
+                                                .length),
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontFamily: AppImages.fontPoppins,
+                                        fontSize: 20.sp,
+                                        fontWeight: FontWeight.w400)),
+                              ],
+                            ),
                           ),
                         ),
                       )
@@ -114,3 +126,4 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+// 15611
